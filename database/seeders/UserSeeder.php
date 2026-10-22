@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
             ['name' => 'Luis Quispe',      'email' => 'luis@lab.test',      'rol' => User::ROL_ESTUDIANTE],
             ['name' => 'María Flores',     'email' => 'maria@lab.test',     'rol' => User::ROL_ESTUDIANTE],
             ['name' => 'Bryan Astete',     'email' => 'brya@lab.test',     'rol' => User::ROL_ESTUDIANTE],
+            ['name' => 'Kevin Ayaque',     'email' => 'kev@lab.test',     'rol' => User::ROL_ESTUDIANTE],
 
         ];
 
