@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\RolEncargado;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -11,7 +12,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Alias del middleware de seguridad. Se usa como:
+        //     Route::middleware(['auth', 'rol.encargado'])->group(...)
+        $middleware->alias([
+            'rol.encargado' => RolEncargado::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

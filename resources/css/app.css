@@ -1,4 +1,22 @@
-@import 'tailwindcss';
+/*
+|--------------------------------------------------------------------------
+| Estilos del proyecto
+|--------------------------------------------------------------------------
+| Bootstrap 5.3 es el sistema de diseño del proyecto (navbar, sidebar,
+| alertas, tablas y formularios). Se importa dentro de una capa propia para
+| que las utilidades de Tailwind (que viven en la capa "utilities") sigan
+| teniendo prioridad sobre los estilos de Bootstrap.
+|
+| Se omite el "preflight" de Tailwind para que el reboot de Bootstrap sea
+| quien defina los estilos base de los elementos (body, headings, tablas).
+*/
+
+@layer theme, base, bootstrap, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+@import 'bootstrap/dist/css/bootstrap.min.css' layer(bootstrap);
+@import 'bootstrap-icons/font/bootstrap-icons.css' layer(bootstrap);
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -8,4 +26,30 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* ------------------------------------------------------------------
+ | Ajustes mínimos de la temática del sistema
+ |------------------------------------------------------------------ */
+body {
+    background-color: var(--bs-gray-100);
+}
+
+/* Sidebar del panel: en pantallas grandes queda fijo junto al contenido. */
+.sidebar-panel {
+    min-height: calc(100vh - 56px);
+}
+
+.sidebar-panel .nav-link {
+    border-radius: var(--bs-border-radius);
+    color: var(--bs-body-color);
+}
+
+.sidebar-panel .nav-link:hover {
+    background-color: var(--bs-gray-200);
+}
+
+.sidebar-panel .nav-link.active {
+    background-color: var(--bs-primary);
+    color: #fff;
 }

@@ -12,6 +12,7 @@ class Equipo extends Model
     use HasFactory;
 
     public const DISPONIBLE = 'Disponible';
+
     public const PRESTADO = 'Prestado';
 
     // Solo estos campos se pueden asignar en masa (Equipo::create / update).
