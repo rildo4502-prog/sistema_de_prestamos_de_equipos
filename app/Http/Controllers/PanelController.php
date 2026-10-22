@@ -22,12 +22,19 @@ class PanelController extends Controller
                 'prestamos_activos' => Prestamo::whereNull('fecha_devolucion')->count(),
             ];
 
+            // Préstamos activos del usuario conectado
             $misPrestamos = Prestamo::query()
                 ->where('user_id', $request->user()->id)
                 ->whereNull('fecha_devolucion')
                 ->with('equipo')
                 ->latest('fecha_prestamo')
                 ->get();
+
+            // Equipos que el estudiante puede consultar
+            $equiposDisponibles = Equipo::disponibles()
+                ->orderBy('nombre')
+                ->get();
+
         } catch (\Throwable $e) {
             report($e);
 
@@ -39,12 +46,15 @@ class PanelController extends Controller
             ];
 
             $misPrestamos = new Collection;
+            $equiposDisponibles = new Collection;
+
             $error = 'No se pudo cargar la información del sistema en este momento. Inténtalo nuevamente.';
         }
 
         return view('panel', [
             'totales' => $totales,
             'misPrestamos' => $misPrestamos,
+            'equiposDisponibles' => $equiposDisponibles,
             'error' => $error,
         ]);
     }
