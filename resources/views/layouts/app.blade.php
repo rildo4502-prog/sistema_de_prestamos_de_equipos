@@ -1,14 +1,3 @@
-{{--
-    Layout base del sistema (Bootstrap 5.3).
-
-    Incluye:
-      - Navbar superior con la marca, el usuario autenticado, su rol y el
-        formulario de cierre de sesión (@csrf).
-      - Sidebar con el menú dinámico según el rol (partials/menu).
-      - Bloque de alertas flash (success / error) y resumen de errores de
-        validación.
-      - Contenedor principal @yield('content').
---}}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -22,11 +11,9 @@
 </head>
 <body>
 
-    {{-- ========================= NAVBAR ========================= --}}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
 
-            {{-- Botón que abre el sidebar (offcanvas) en móvil --}}
             <button class="navbar-toggler d-lg-none me-2" type="button"
                     data-bs-toggle="offcanvas" data-bs-target="#sidebarPanel"
                     aria-controls="sidebarPanel" aria-label="Abrir menú">
@@ -47,7 +34,6 @@
                 @auth
                     <ul class="navbar-nav align-items-lg-center gap-lg-3">
 
-                        {{-- Indicador del usuario autenticado y su rol --}}
                         <li class="nav-item d-none d-lg-block">
                             <span class="navbar-text">
                                 <span class="fw-semibold">{{ auth()->user()->name }}</span>
@@ -73,7 +59,6 @@
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    {{-- Cierre de sesión: siempre POST + @csrf --}}
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
                                         <button type="submit" class="dropdown-item text-danger">
@@ -97,7 +82,6 @@
         </div>
     </nav>
 
-    {{-- ========================= SIDEBAR (móvil) ========================= --}}
     <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarPanel"
          aria-labelledby="sidebarPanelTitulo">
         <div class="offcanvas-header">
@@ -111,11 +95,9 @@
         </div>
     </div>
 
-    {{-- ========================= CONTENIDO ========================= --}}
     <div class="container-fluid" style="padding-top: 4rem;">
         <div class="row">
 
-            {{-- Sidebar fijo en pantallas grandes --}}
             <aside class="col-lg-3 col-xl-2 d-none d-lg-block px-3 py-4">
                 <div class="sidebar-panel">
                     @auth
@@ -126,7 +108,6 @@
 
             <main class="col-lg-9 col-xl-10 py-4">
 
-                {{-- ---------- Alertas flash ---------- --}}
                 @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <i class="bi bi-check-circle-fill me-2"></i>{{ session('success') }}
@@ -141,7 +122,6 @@
                     </div>
                 @endif
 
-                {{-- ---------- Errores de validación ---------- --}}
                 @if ($errors->any())
                     <div class="alert alert-warning" role="alert">
                         <h6 class="alert-heading"><i class="bi bi-exclamation-triangle me-2"></i>Revisa los datos ingresados</h6>
@@ -153,7 +133,6 @@
                     </div>
                 @endif
 
-                {{-- ---------- Contenido de la vista ---------- --}}
                 @yield('content')
             </main>
         </div>

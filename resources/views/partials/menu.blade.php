@@ -1,16 +1,3 @@
-{{--
-    Menú lateral del panel.
-
-    Se construye según el rol del usuario autenticado:
-      - Encargado: acceso al CRUD de Equipos, Préstamos y Gestión de Usuarios.
-      - Estudiante: sólo sus préstamos activos y la solicitud de equipos.
-
-    Cada entrada se dibuja únicamente si la ruta ya existe en el proyecto
-    (Route::has). Así el menú no se rompe mientras los demás integrantes
-    del equipo aún no registran sus controladores; en cuanto lo hacen, el
-    enlace aparece automáticamente.
---}}
-
 @php
     $esEncargado = auth()->user()->esEncargado();
 

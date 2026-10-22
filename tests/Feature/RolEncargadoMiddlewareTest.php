@@ -16,20 +16,12 @@ class RolEncargadoMiddlewareTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
-        // Ruta protegida sólo para el Encargado, como las secciones de
-        // administración de equipos, préstamos y usuarios.
         Route::middleware(['auth', 'rol.encargado'])
             ->get('/prueba-encargado', fn () => 'ok')
             ->name('prueba.encargado');
-
-        // Ruta con el middleware solo, para comprobar la respuesta ante
-        // un visitante sin sesión.
         Route::middleware('rol.encargado')
             ->get('/prueba-solo-rol', fn () => 'ok')
             ->name('prueba.solo.rol');
-
-        // Actualiza la tabla de nombres de rutas (Laravel lo hace al arrancar).
         Route::getRoutes()->refreshNameLookups();
     }
 
@@ -70,13 +62,9 @@ class RolEncargadoMiddlewareTest extends TestCase
     public function test_el_alerta_flash_se_muestra_en_el_panel(): void
     {
         $estudiante = User::factory()->create(['rol' => User::ROL_ESTUDIANTE]);
-
-        // El estudiante intenta entrar a una ruta restringida...
         $this->actingAs($estudiante)
             ->get('/prueba-encargado')
             ->assertRedirect(route('panel'));
-
-        // ...y el aviso se muestra en el panel al que es redirigido.
         $this->actingAs($estudiante)
             ->get(route('panel'))
             ->assertOk()

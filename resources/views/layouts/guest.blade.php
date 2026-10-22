@@ -1,6 +1,3 @@
-{{--
-    Layout para vistas sin sesión (login). Mismo estilo Bootstrap del panel.
---}}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,7 +23,6 @@
                     <p class="text-secondary small mb-0">@yield('subtitulo', 'Inicia sesión para continuar')</p>
                 </div>
 
-                {{-- Alertas flash --}}
                 @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}

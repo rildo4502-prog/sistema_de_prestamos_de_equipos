@@ -14,16 +14,10 @@ class LayoutBaseTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
-        // Se simulan las rutas que registrarán los demás integrantes del
-        // equipo para comprobar el menú dinámico del layout.
         Route::middleware('auth')->get('/equipos', fn () => 'ok')->name('equipos.index');
         Route::middleware('auth')->get('/prestamos', fn () => 'ok')->name('prestamos.index');
         Route::middleware('auth')->get('/usuarios', fn () => 'ok')->name('usuarios.index');
         Route::middleware('auth')->get('/prestamos/mis', fn () => 'ok')->name('prestamos.mis');
-
-        // Laravel refresca esta tabla al arrancar la aplicación; en las
-        // pruebas hay que hacerlo a mano tras registrar rutas nuevas.
         Route::getRoutes()->refreshNameLookups();
     }
 

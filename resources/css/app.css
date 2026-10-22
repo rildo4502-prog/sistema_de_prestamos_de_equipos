@@ -1,16 +1,3 @@
-/*
-|--------------------------------------------------------------------------
-| Estilos del proyecto
-|--------------------------------------------------------------------------
-| Bootstrap 5.3 es el sistema de diseño del proyecto (navbar, sidebar,
-| alertas, tablas y formularios). Se importa dentro de una capa propia para
-| que las utilidades de Tailwind (que viven en la capa "utilities") sigan
-| teniendo prioridad sobre los estilos de Bootstrap.
-|
-| Se omite el "preflight" de Tailwind para que el reboot de Bootstrap sea
-| quien defina los estilos base de los elementos (body, headings, tablas).
-*/
-
 @layer theme, base, bootstrap, components, utilities;
 
 @import 'tailwindcss/theme.css' layer(theme);
@@ -28,14 +15,10 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-/* ------------------------------------------------------------------
- | Ajustes mínimos de la temática del sistema
- |------------------------------------------------------------------ */
 body {
     background-color: var(--bs-gray-100);
 }
 
-/* Sidebar del panel: en pantallas grandes queda fijo junto al contenido. */
 .sidebar-panel {
     min-height: calc(100vh - 56px);
 }

@@ -4,7 +4,6 @@
 
 @section('content')
 
-    {{-- Encabezado --}}
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
         <div>
             <h1 class="h3 mb-1">Panel</h1>
@@ -17,14 +16,12 @@
         </div>
     </div>
 
-    {{-- Aviso del try/catch del PanelController --}}
     @if ($error)
         <div class="alert alert-danger" role="alert">
             <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ $error }}
         </div>
     @endif
 
-    {{-- Indicadores --}}
     <div class="row g-3 mb-4">
         <div class="col-6 col-lg-3">
             <div class="card border-0 shadow-sm h-100">
@@ -60,7 +57,6 @@
         </div>
     </div>
 
-    {{-- Préstamos del usuario --}}
     <div class="card border-0 shadow-sm">
         <div class="card-header bg-white">
             <h2 class="h6 mb-0">

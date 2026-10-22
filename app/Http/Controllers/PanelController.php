@@ -8,10 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
-/**
- * Panel inicial del sistema. Es la vista que respalda el layout base
- * (navbar + sidebar) y muestra los indicadores según el rol del usuario.
- */
 class PanelController extends Controller
 {
     public function __invoke(Request $request): View
@@ -26,7 +22,6 @@ class PanelController extends Controller
                 'prestamos_activos' => Prestamo::whereNull('fecha_devolucion')->count(),
             ];
 
-            // El estudiante sólo ve sus propios préstamos activos.
             $misPrestamos = Prestamo::query()
                 ->where('user_id', $request->user()->id)
                 ->whereNull('fecha_devolucion')
@@ -34,8 +29,6 @@ class PanelController extends Controller
                 ->latest('fecha_prestamo')
                 ->get();
         } catch (\Throwable $e) {
-            // Se registra la traza completa en el log (storage/logs) y se
-            // muestran datos vacíos con un aviso en la vista.
             report($e);
 
             $totales = [
