@@ -16,6 +16,8 @@ class UserSeeder extends Seeder
             ['name' => 'Ana Torres',       'email' => 'ana@lab.test',       'rol' => User::ROL_ESTUDIANTE],
             ['name' => 'Luis Quispe',      'email' => 'luis@lab.test',      'rol' => User::ROL_ESTUDIANTE],
             ['name' => 'María Flores',     'email' => 'maria@lab.test',     'rol' => User::ROL_ESTUDIANTE],
+            ['name' => 'Bryan Astete',     'email' => 'brya@lab.test',     'rol' => User::ROL_ESTUDIANTE],
+
         ];
 
         foreach ($usuarios as $datos) {
