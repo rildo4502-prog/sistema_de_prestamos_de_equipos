@@ -3,9 +3,9 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\PanelController;
+use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PrestamoController;
 
 // Login personalizado
 Route::middleware('guest')->group(function () {
